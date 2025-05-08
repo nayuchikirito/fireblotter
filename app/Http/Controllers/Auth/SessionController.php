@@ -20,7 +20,10 @@ class SessionController extends Controller
             'password' => 'required'
         ]);
 
-        if(!Auth::attempt($attributes)) {
+        if (!Auth::attempt([
+            'username' => $attributes['username'],  // Use the validated username
+            'password' => $attributes['password'],  // Use the validated password
+        ], request()->filled('remember'))) { // Check if "remember me" was selected
             throw ValidationException::withMessages([
                 'username' => 'Your provided credentials could not be verified.'
             ]);

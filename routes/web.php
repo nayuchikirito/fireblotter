@@ -9,14 +9,12 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/login', function () {
-    return view('auth.login');
-});
-
-//User Registration
+//User
 Route::get('/users', [RegisteredUserController::class, 'index']);
 Route::get('/register', [RegisteredUserController::class, 'create']);
 Route::post('/register', [RegisteredUserController::class, 'store']);
+Route::get('/user/{id}', [RegisteredUserController::class, 'edit'])->name('users.edit');
+Route::put('/user/{id}', [RegisteredUserController::class, 'update']);
 
 //User Log-in
 Route::get('/login', [SessionController::class, 'create']);

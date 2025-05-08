@@ -6,6 +6,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Station;
+
 
 class User extends Authenticatable
 {
@@ -21,8 +24,21 @@ class User extends Authenticatable
         'username',
         'email',
         'user_role',
+        'station_id',
         'password',
     ];
+
+    public function getRoleLabelAttribute(){
+        return match ($this->user_role) {
+            1 => 'Admin',
+            2 => 'Regional Operations',
+            3 => 'Provincial Operations',
+            4 => 'Station Operations',
+            5 => 'User',
+            default => 'Unknown',
+        };
+    }
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -45,5 +61,10 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function stations()
+    {
+        return $this->hasMany(Station::class);
     }
 }

@@ -1,4 +1,25 @@
 import "./bootstrap";
+import "simple-datatables/dist/style.css";
+import { DataTable } from "simple-datatables";
+// In resources/js/app.js
+
+import "flowbite"; // Import Flowbite
+import Alpine from "alpinejs"; // Import Alpine.js
+
+window.Alpine = Alpine; // Make Alpine.js available globally
+Alpine.start(); // Initialize Alpine.js
+
+//Data-tables
+document.addEventListener("DOMContentLoaded", () => {
+    const table = document.getElementById("users-table");
+
+    if (table) {
+        new DataTable(table, {
+            searchable: true,
+            perPage: 10,
+        });
+    }
+});
 
 $(document).ready(function () {
     var checkSideWidthCompress = 0;

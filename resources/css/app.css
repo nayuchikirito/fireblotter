@@ -5,3 +5,63 @@
 .clickable-items {
     cursor: pointer;
 }
+
+/* Data tables */
+.datatable-input {
+    width: 100%; /* Equivalent to w-full */
+    padding: 0.5rem 1rem; /* Equivalent to px-4 py-2 */
+    border: 2px solid #d1d5db; /* Equivalent to border border-gray-300 */
+    border-radius: 0.5rem; /* Equivalent to rounded-lg */
+    outline: none; /* Equivalent to outline-none */
+    transition: all 0.3s ease; /* Equivalent to transition-all */
+}
+
+.datatable-input:focus {
+    box-shadow: 0 0 0 2px rgba(189, 33, 48, 0.5); /* Adds a red ring effect (box-shadow) */
+    border-color: #bd2130; /* Equivalent to focus:border-red */
+}
+
+.datatable-selector {
+    background-color: #f9fafb; /* Equivalent to bg-gray-50 */
+    border: 1px solid #d1d5db; /* Equivalent to border border-gray-300 */
+    color: #111827; /* Equivalent to text-gray-900 */
+    border-radius: 0.5rem; /* Equivalent to rounded-lg */
+    outline: none; /* Equivalent to outline-none (removes the default outline) */
+    width: 4rem; /* Equivalent to w-full */
+    padding: 0.625rem; /* Equivalent to p-2.5 (padding of 10px on all sides) */
+    transition: all 0.3s ease; /* Optional transition for smooth effects */
+}
+
+.datatable-selector:focus {
+    border-color: #bd2130; /* Equivalent to focus:border-blue-500 */
+    box-shadow: 0 0 0 2px rgba(189, 33, 48, 0.5); /* Equivalent to focus:ring-blue-500 */
+}
+
+.datatable-dropdown {
+    width: 20rem;
+}
+.datatable-search {
+    width: 28rem;
+}
+
+.datatable-wrapper {
+    font-weight: 500;
+    font-size: 0.875rem;
+    color: #3d3d3dab; /* Equivalent to text-gray-900 */
+}
+
+.datatable-pagination-list-item-link {
+    border-radius: 8px;
+    transition: all 0.3s ease; /* Equivalent to transition-all */
+}
+
+/* Add this to your stylesheet */
+.striped-columns td:nth-child(odd),
+.striped-columns th:nth-child(odd) {
+    background-color: #f9fafb; /* Tailwind's gray-50 */
+}
+
+.striped-columns td:nth-child(even),
+.striped-columns th:nth-child(even) {
+    background-color: #ffffff;
+}

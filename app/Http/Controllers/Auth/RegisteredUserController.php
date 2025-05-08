@@ -8,13 +8,14 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class RegisteredUserController extends Controller
 {
     public function index()
     {
         $users = User::all();
-        return view('users', compact('users'));
+        return view('users.users', compact('users'));
     }
     public function create()
     {
@@ -26,8 +27,8 @@ class RegisteredUserController extends Controller
         $validatedAttributes = request()->validate([
             'username'  => ['required', 'string', 'min:3', 'max:50'],
             'email'     => ['required', 'email', 'max:254', 'unique:users,email'],
-            'user_role' => ['required', 'string'],
-            'password'  => ['required', Password::min(8)->letters()->numbers(), 'confirmed']
+            'user_role' => ['required', 'integer'],
+            'password'  => ['required', Password::min(5)->letters()->numbers(), 'confirmed']
         ]);
 
         $user = User::create($validatedAttributes);
@@ -36,4 +37,31 @@ class RegisteredUserController extends Controller
 
         return redirect('/users');
     }
+
+    public function edit($id)
+    {
+        $user = User::findOrFail($id); // Will throw 404 if not found
+
+        return view('users.edit', compact('user'));
+    }
+
+
+    public function update(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        $validatedAttributes = $request->validate([
+            'username'  => ['required', 'string', 'min:3', 'max:50'],
+            'email'     => ['required', 'email', 'max:254', 'unique:users,email,' . $user->id],
+            'user_role' => ['required', 'integer'],
+            'password'  => ['required', Password::min(5)->letters()->numbers(), 'confirmed'],
+        ]);
+
+        $validatedAttributes['password'] = Hash::make($validatedAttributes['password']);
+
+        $user->update($validatedAttributes);
+
+        return response()->json(['message' => 'User updated successfully']);
+    }
+
 }

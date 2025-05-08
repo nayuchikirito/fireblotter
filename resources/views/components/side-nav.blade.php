@@ -1,4 +1,4 @@
-<div id="sidebar.nav" class="fixed top-0 left-0 w-64 h-full z-50 bg-gray-800 text-white transform -translate-x-full md:translate-x-0 transition-all duration-300 ease-in-out">
+<div id="side-nav" class="fixed top-0 left-0 w-64 h-full z-50 bg-gray-800 text-white transform -translate-x-full md:translate-x-0 transition-all duration-300 ease-in-out">
     {{-- Logo --}}
     <div style="box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);">
         <x-button.logo-link href="#">

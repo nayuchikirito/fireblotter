@@ -25,13 +25,13 @@
 
         <div class="flex items-center justify-between">
           <label class="flex items-center">
-            <x-button.checkbox class="remember"/>
+            <x-button.checkbox name="remember" class="remember"/>
             <x-text.gray class="ml-2">Remember me</x-text.gray>
           </label>
-            <x-button.red.link href="#">Forgot Password?</x-button.red-link>
+            <x-button.red-link href="#">Forgot Password?</x-button.red-link>
         </div>
 
-        <x-red-button class="w-full">Sign In</x-red-button>
+        <x-button.red class="w-full">Sign In</x-button.red>
       </form>
     </div>
   </div>
