@@ -43,16 +43,25 @@
                     <!-- Password -->
                     <div>
                         <x-form.label for="password">Password</x-form.label>
-                        <x-form.input id="password" name="password" type="password" class="max-w-md"
-                            placeholder="••••••••" required></x-form.input>
+                        <x-form.input id="password"
+                        name="password"
+                        type="password"
+                        class="max-w-md"
+                        placeholder="••••••••"
+                        required></x-form.input>
                         <x-form.error name="password"></x-form.error>
                     </div>
 
                     <!-- Confirm Password -->
                     <div>
                         <x-form.label for="password_confirmation">Confirm Password</x-form.label>
-                        <x-form.input id="password_confirmation" name="password_confirmation" type="password"
-                            class="max-w-md" placeholder="••••••••" required></x-form.input>
+                        <x-form.input
+                        id="password_confirmation"
+                        name="password_confirmation"
+                        type="password"
+                        class="max-w-md"
+                        placeholder="••••••••"
+                        required></x-form.input>
                         <x-form.error name="password_confirmation"></x-form.error>
                     </div>
 
@@ -61,9 +70,27 @@
                         <x-button.cancel class="px-4">Cancel</x-button.cancel>
                     </a>
                     <x-button.red class="px-4 ml-5">Update User</x-button.red>
+                    <button id="successButton" data-modal-target="successModal" data-modal-toggle="successModal" hidden>Success Button</button>
                   </div>
 
               </form>
-        </div>
+            </div>
     </x-main-nav>
+
+    <x-form.successModal/>
+
+    @if(session('success'))
+        <script>
+            $(document).ready(function () {
+                $('#successButton').trigger('click');
+            });
+        </script>
+    @endif
+
 </x-layout>
+
+
+
+
+
+

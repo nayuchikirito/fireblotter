@@ -10,11 +10,13 @@ Route::get('/', function () {
 });
 
 //User
-Route::get('/users', [RegisteredUserController::class, 'index']);
+Route::get('/users', [RegisteredUserController::class, 'index'])->name('users.index');
 Route::get('/register', [RegisteredUserController::class, 'create']);
 Route::post('/register', [RegisteredUserController::class, 'store']);
 Route::get('/user/{id}', [RegisteredUserController::class, 'edit'])->name('users.edit');
-Route::put('/user/{id}', [RegisteredUserController::class, 'update']);
+Route::put('/user/{id}', [RegisteredUserController::class, 'update'])->name('user.update');
+Route::delete('/user/{id}', [RegisteredUserController::class, 'destroy'])->name('user.destroy');
+
 
 //User Log-in
 Route::get('/login', [SessionController::class, 'create']);

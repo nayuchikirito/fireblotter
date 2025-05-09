@@ -1,7 +1,6 @@
 import "./bootstrap";
 import "simple-datatables/dist/style.css";
 import { DataTable } from "simple-datatables";
-// In resources/js/app.js
 
 import "flowbite"; // Import Flowbite
 import Alpine from "alpinejs"; // Import Alpine.js
@@ -9,15 +8,20 @@ import Alpine from "alpinejs"; // Import Alpine.js
 window.Alpine = Alpine; // Make Alpine.js available globally
 Alpine.start(); // Initialize Alpine.js
 
-//Data-tables
 document.addEventListener("DOMContentLoaded", () => {
-    const table = document.getElementById("users-table");
-
-    if (table) {
-        new DataTable(table, {
-            searchable: true,
-            perPage: 10,
-        });
+    //Modal
+    showModalIfFlagged("successModal");
+    function showModalIfFlagged(modalId, flagId = "update-success-flag") {
+        const flag = document.getElementById(flagId);
+        console.log(flag);
+        if (flag && flag.dataset.showModal === "true") {
+            console.log("Modal should be shown");
+            const modalEl = document.getElementById(modalId);
+            if (modalEl) {
+                const modal = new Modal(modalEl);
+                modal.show();
+            }
+        }
     }
 });
 
@@ -190,5 +194,14 @@ $(document).ready(function () {
         setTimeout(function () {
             $(".sidebar-link-text").fadeToggle(300);
         }, 300);
+    }
+
+    //Data-tables
+    const $table = $("#users-table");
+    if ($table.length) {
+        new DataTable($table[0], {
+            searchable: true,
+            perPage: 10,
+        });
     }
 });

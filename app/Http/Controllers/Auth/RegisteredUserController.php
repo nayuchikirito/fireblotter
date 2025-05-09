@@ -35,7 +35,7 @@ class RegisteredUserController extends Controller
 
         // Auth::login($user);
 
-        return redirect('/users');
+        return redirect()->route('users.index');
     }
 
     public function edit($id)
@@ -61,7 +61,19 @@ class RegisteredUserController extends Controller
 
         $user->update($validatedAttributes);
 
-        return response()->json(['message' => 'User updated successfully']);
+        // return response()->json(['message' => 'User updated successfully']);
+
+        return back()->with('success', 'User updated successfully');
+
     }
+
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('users.index');
+    }
+
 
 }

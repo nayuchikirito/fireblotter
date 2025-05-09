@@ -28,7 +28,13 @@
                     <x-table.data>{{ $user->role_label }}</x-table.data>
                     <x-table.data class="text-right space-x-2">
                         <x-button.blue-link href="/user/{{ $user->id }}">Edit</x-button.blue-link>
-                        <x-button.red-link href="#">Delete</x-button.red-link>
+                        <x-button.delete
+                        class="deleteButton"
+                        data-modal-toggle="deleteModal"
+                        data-modal-target="deleteModal"
+                        data-id="{{ $user->id }}">
+                        Delete
+                        </x-button.delete>
                     </x-table.data>
                 </tr>
                 @endforeach
@@ -36,5 +42,22 @@
         </x-table.table>
     </x-table.table-wrap>
 </x-main-nav>
+<x-form.deleteModal/>
+<script>
+    $(document).ready(function () {
+        console.log('Document is ready');
+        $('.deleteButton').on('click', function () {
+            const userId = $(this).data('id');
+            const form = $('#deleteForm');
+            console.log(`User ID: ${userId}`);
+            if (userId) {
+                form.attr('action', '/user/${userId}');
+            }
+        });
+    });
+</script>
 
 </x-layout>
+
+
+
